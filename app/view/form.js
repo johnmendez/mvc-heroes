@@ -1,4 +1,6 @@
-export default class ClassName {
+import { createHero } from '../actions';
+
+export default class FormView {
   constructor(el, store) {
     this.el = el;
     this.store = store;
@@ -9,13 +11,10 @@ export default class ClassName {
       // Stop reloading the page
       anything.preventDefault();
 
-      this.store.dispatch({
-        type: 'HERO@CREATE_COMPLETE',
-        hero: {
-          name: this.el.querySelector('.hero-form__name').value,
-          power: this.el.querySelector('.hero-form__power').value,
-        }
-      });
+      const name = this.el.querySelector('.hero-form__name').value;
+      const power = this.el.querySelector('.hero-form__power').value;
+
+      this.store.dispatch(createHero(name, power));
 
       // Clear the form and local stuff to this view
     });
