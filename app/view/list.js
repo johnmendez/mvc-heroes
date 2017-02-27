@@ -1,3 +1,5 @@
+import { removeHero } from '../actions';
+
 class ItemView {
   constructor(hero, store) {
     this.hero = hero;
@@ -13,6 +15,12 @@ class ItemView {
           <h3 class="hero-power"></h3>
         </div>
       </div>`;
+  }
+
+  mounted() {
+    this.el.addEventListener('click', () => {
+      this.store.dispatch(removeHero(this.hero.id));
+    });
   }
 
   render() {
@@ -39,6 +47,7 @@ export default class ListView {
     const heroes = this.store.getState().heroes;
     heroes.forEach((data) => {
       const view = new ItemView(data, this.store);
+      view.mounted();
       view.render();
 
       this.el.appendChild(view.el);

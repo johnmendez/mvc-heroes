@@ -6,6 +6,8 @@ function heroes(state, action) {
       return action.heroes;
     case 'HERO@CREATE_COMPLETE':
       return [...state, action.hero];
+    case 'HERO@DELETE_COMPLETE':
+      return state.filter(hero => hero.id !== action.id);
     default:
       return state || [];
   }

@@ -5,6 +5,13 @@ export function createHero(name, power) {
   };
 }
 
+export function removeHero(id) {
+  return {
+    type: 'HERO@DELETE_COMPLETE',
+    id,
+  };
+}
+
 export function toggleGrid(force) {
   if (force === undefined) {
     return { type: 'SHOW_GRID@TOGGLE' };
